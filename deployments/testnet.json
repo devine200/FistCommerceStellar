@@ -2,30 +2,36 @@
   "project": "Fist Commerce",
   "network": "testnet",
   "network_passphrase": "Test SDF Network ; September 2015",
-  "stellar_cli_version": "30.0.1",
+  "stellar_cli_version": "stellar 30.0.1 (f2a7b74175c34585f3b30a1abf42a2d41cbcc390)",
   "soroban_sdk_version": "29.0.1",
-  "source_commit": "pending-deploy",
+  "source_commit": "cc6b652a34be5cec615646cebc77674507712c43",
+  "accounts": {
+    "admin": "GBG2BACHNIJJ65PGRXTZQLFPP4VZJUWZ362MNZWKNE65BEXJKII4FTZE",
+    "issuer": "GCRGIQHPFQWSRB27AKKY4C33MOY4JPMYTIAE7R4HWHWZF24CCK3AKFI3",
+    "investor": "GAGU3EY3FPKB7YBTDFCSAEU5ECPF5LUPS3AO5ZFMHWOO4U66UX34ARMF",
+    "merchant": "GBZECCLSU47LDISNDGUD4O7433CSDPUS7ZCAHMG2F3XCFQ3WTGZ5OOH4"
+  },
   "test_asset": {
     "code": "FISTUSD",
-    "issuer": "G...",
-    "sac_contract_id": "C..."
+    "issuer": "GCRGIQHPFQWSRB27AKKY4C33MOY4JPMYTIAE7R4HWHWZF24CCK3AKFI3",
+    "sac_contract_id": "CAPA5QMLHIWOZO7N3REUVHXYQRUAOW32S6B3BZ7VTVQSDPGQH4DJ6GPQ"
   },
   "attestation_registry": {
-    "contract_id": "C...",
-    "wasm_hash": "pending",
-    "deployment_transaction": "pending"
+    "contract_id": "CDALKH7ZYF2EAWBVUIVLXUNKVXTGWJY5VLVFIVOB2LGPEH6OFGJD4VOM",
+    "wasm_hash": "15601e6ec6bb864b38bd53fece0f5e08488a35bd3fde04a0c041a60b9b6a80a7",
+    "deployment_transaction": "b3a41d03bd008c14d001241730ac94ca0a791627af8bd22500d35e95038ee562"
   },
   "trade_credit_pool": {
-    "contract_id": "C...",
-    "wasm_hash": "pending",
-    "deployment_transaction": "pending"
+    "contract_id": "CABUICVVHPHD5BF5J3ID3BH4OJMTEKPQQKOPHRKQYRKER3MAFDS4T43V",
+    "wasm_hash": "b1404b6366c3badd5e5eef34320b0c36bce796ba74f38934b40e259f24e27a69",
+    "deployment_transaction": "d0fe9780a0e39d5cc913c31baa30cc9dcc9d420dfe62af234d58a9b190925ed9"
   },
   "subgraph_url": "http://localhost:4000/graphql",
   "track_b": {
-    "protocol_controller": "pending",
-    "receivable_allocator": "pending",
-    "payout_router": "pending",
-    "receivable_token": "pending",
-    "fist_multisig": "pending"
+    "protocol_controller": "CBIKSAYJBXMN3276JJNZW3ASNM53YP65SIF7I7FJMRAM4PEMR7NP3CQO",
+    "receivable_allocator": "CCCIT3V4G5SZHD4ECSK3TXMSC42PP5ZYZYVYTTJYOGINLTO5YINJOUFK",
+    "payout_router": "CCKXHHQJ6EH472CRNZKBACWSW4TOINWTJ726CPB4HIOW6TISD22SLUWW",
+    "receivable_token": "CDRNNS6WPG6Y4ITUFRLCFTBMML2VC55KUIRNOFIGUCWVLHVEZQFXCP4X",
+    "fist_multisig": "CAIGNJJWQ5DZYP6LLHPSXOYR5QKBG74OHQJ7VQNWJPUNPIJNNCYVLY45"
   }
 }

@@ -2,11 +2,18 @@
 //! Fist Commerce TradeCreditPool — Track A central financing path.
 //! Settlement asset is a Stellar Asset Contract (e.g. FISTUSD SAC), never branded as USDC.
 
-use attestation_registry::{AttestationRegistryClient, AttestationType};
 use soroban_sdk::{
     contract, contracterror, contractevent, contractimpl, contracttype, token, Address, BytesN,
-    Env, String,
+    Env, IntoVal, String, Symbol, Vec,
 };
+
+/// Must match AttestationRegistry::AttestationType discriminants for cross-contract calls.
+#[contracttype]
+#[derive(Clone, Debug, Eq, PartialEq)]
+enum AttestationTypeArg {
+    MerchantApproved = 1,
+    DocumentsVerified = 2,
+}
 
 #[contracterror]
 #[derive(Copy, Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
@@ -593,13 +600,24 @@ impl TradeCreditPool {
     }
 
     fn attestation_valid(env: &Env, registry: &Address, subject: &BytesN<32>, ty: u32) -> bool {
-        let client = AttestationRegistryClient::new(env, registry);
         let at = if ty == 1 {
-            AttestationType::MerchantApproved
+            AttestationTypeArg::MerchantApproved
         } else {
-            AttestationType::DocumentsVerified
+            AttestationTypeArg::DocumentsVerified
         };
-        client.is_attestation_valid(subject, &at)
+        let args: Vec<_> = soroban_sdk::vec![
+            env,
+            subject.clone().into_val(env),
+            at.into_val(env),
+        ];
+        match env.try_invoke_contract::<bool, soroban_sdk::Error>(
+            registry,
+            &Symbol::new(env, "is_attestation_valid"),
+            args,
+        ) {
+            Ok(Ok(v)) => v,
+            _ => false,
+        }
     }
 }
 

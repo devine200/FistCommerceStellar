@@ -8,7 +8,9 @@ import { list } from "./store.js";
 import { pollOnce } from "./poller.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const typeDefs = readFileSync(resolve(__dirname, "../schema.graphql"), "utf8");
+const typeDefs = readFileSync(resolve(__dirname, "../schema.graphql"), "utf8")
+  // The Graph `@entity` directives are not valid for graphql-js; strip for local poller.
+  .replace(/@entity(\([^)]*\))?/g, "");
 
 const schema = buildSchema(typeDefs);
 
