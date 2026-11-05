@@ -1,0 +1,14 @@
+services:
+  stellar-subgraph:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ../deployments:/app/../deployments:ro
+    command: sh -c "npm install && npx tsx src/server.ts"
+    environment:
+      PORT: "4000"
+      STELLAR_RPC_URL: https://soroban-testnet.stellar.org
+      POLL_MS: "15000"
+    ports:
+      - "4000:4000"

@@ -1,0 +1,62 @@
+# Soroban-adapted entities aligned with fist-commerce-subgraph names.
+# Addresses are String (G… / C…) instead of Bytes.
+
+type Deposit @entity(immutable: true) {
+  id: ID!
+  user: String!
+  amount: String!
+  blockNumber: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+type Withdrawal @entity(immutable: true) {
+  id: ID!
+  user: String!
+  amount: String!
+  blockNumber: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+type ReceivableFunded @entity(immutable: true) {
+  id: ID!
+  receivableId: String!
+  blockNumber: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+type PaymentRecorded @entity(immutable: true) {
+  id: ID!
+  receivableId: String!
+  payment: String!
+  blockNumber: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+type AttestationIssued @entity(immutable: true) {
+  id: ID!
+  subjectId: String!
+  attestationType: String!
+  issuer: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+type AttestationRevoked @entity(immutable: true) {
+  id: ID!
+  subjectId: String!
+  attestationType: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+type Query {
+  deposits(first: Int = 100, skip: Int = 0): [Deposit!]!
+  withdrawals(first: Int = 100, skip: Int = 0): [Withdrawal!]!
+  receivableFundeds(first: Int = 100, skip: Int = 0): [ReceivableFunded!]!
+  paymentRecordeds(first: Int = 100, skip: Int = 0): [PaymentRecorded!]!
+  attestationIssueds(first: Int = 100, skip: Int = 0): [AttestationIssued!]!
+}
