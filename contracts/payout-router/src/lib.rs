@@ -244,7 +244,8 @@ mod test {
     #[test]
     fn two_step_payout_and_repay() {
         let env = Env::default();
-        env.mock_all_auths();
+        // SAC transfer from pool requires non-root auth in tests.
+        env.mock_all_auths_allowing_non_root_auth();
         let admin = Address::generate(&env);
         let pool = Address::generate(&env);
         let merchant = Address::generate(&env);

@@ -155,7 +155,7 @@ mod test {
         hash[0] = 7;
         let doc = BytesN::from_array(&env, &hash);
         let tid = c.mint(&user, &doc);
-        assert_eq!(c.owner_of(&tid), Some(user));
+        assert_eq!(c.owner_of(&tid), Some(user.clone()));
         assert!(c.try_transfer_from(&user, &admin, &tid).is_err());
         c.burn(&tid);
         assert!(c.owner_of(&tid).is_none());
