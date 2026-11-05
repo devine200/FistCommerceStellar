@@ -92,7 +92,8 @@ fn setup() -> Ctx {
 
 fn subject_for(env: &Env, merchant_id: &str) -> BytesN<32> {
     let s = String::from_str(env, merchant_id);
-    let hash = env.crypto().sha256(&s.into());
+    let bytes = soroban_sdk::Bytes::from(s);
+    let hash = env.crypto().sha256(&bytes);
     BytesN::from_array(env, &hash.to_array())
 }
 

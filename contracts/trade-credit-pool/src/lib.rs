@@ -586,8 +586,9 @@ impl TradeCreditPool {
     }
 
     fn subject_from_merchant_id(env: &Env, merchant_id: &String) -> BytesN<32> {
-        // Opaque subject: keccak-like hash via SHA256 of merchant_id bytes
-        let hash = env.crypto().sha256(&merchant_id.clone().into());
+        // Opaque subject: SHA256 over the Soroban String payload (Bytes::from).
+        let bytes = soroban_sdk::Bytes::from(merchant_id.clone());
+        let hash = env.crypto().sha256(&bytes);
         BytesN::from_array(env, &hash.to_array())
     }
 
