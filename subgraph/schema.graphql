@@ -1,7 +1,8 @@
 # Soroban-adapted entities aligned with fist-commerce-subgraph names.
 # Addresses are String (G… / C…) instead of Bytes.
+# Served by FistCommerceStellar direct RPC indexer — not The Graph / SubQuery.
 
-type Deposit @entity(immutable: true) {
+type Deposit {
   id: ID!
   user: String!
   amount: String!
@@ -10,7 +11,7 @@ type Deposit @entity(immutable: true) {
   transactionHash: String!
 }
 
-type Withdrawal @entity(immutable: true) {
+type Withdrawal {
   id: ID!
   user: String!
   amount: String!
@@ -19,7 +20,7 @@ type Withdrawal @entity(immutable: true) {
   transactionHash: String!
 }
 
-type ReceivableFunded @entity(immutable: true) {
+type ReceivableFunded {
   id: ID!
   receivableId: String!
   blockNumber: String!
@@ -27,7 +28,7 @@ type ReceivableFunded @entity(immutable: true) {
   transactionHash: String!
 }
 
-type PaymentRecorded @entity(immutable: true) {
+type PaymentRecorded {
   id: ID!
   receivableId: String!
   payment: String!
@@ -36,7 +37,7 @@ type PaymentRecorded @entity(immutable: true) {
   transactionHash: String!
 }
 
-type AttestationIssued @entity(immutable: true) {
+type AttestationIssued {
   id: ID!
   subjectId: String!
   attestationType: String!
@@ -45,7 +46,7 @@ type AttestationIssued @entity(immutable: true) {
   transactionHash: String!
 }
 
-type AttestationRevoked @entity(immutable: true) {
+type AttestationRevoked {
   id: ID!
   subjectId: String!
   attestationType: String!

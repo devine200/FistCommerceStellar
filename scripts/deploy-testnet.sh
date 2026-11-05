@@ -39,7 +39,7 @@ fi
 
 echo "==> Ensure network + identity (uses local stellar config; secrets never written to deployments/)"
 stellar network add --global "$NETWORK" \
-  --rpc-url "${STELLAR_RPC_URL:-https://soroban-testnet.stellar.org}" \
+  --rpc-url "${STELLAR_RPC_URL:-${SOROBAN_TESTNET_RPC_URL:-https://soroban-testnet.stellar.org}}" \
   --network-passphrase "$NETWORK_PASSPHRASE" 2>/dev/null || true
 
 IDENTITY="${STELLAR_IDENTITY:-fist-deployer}"

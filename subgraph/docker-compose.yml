@@ -1,14 +1,44 @@
+# Stellar/Soroban direct indexer only — not The Graph / SubQuery.
 services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: fist
+      POSTGRES_PASSWORD: fist
+      POSTGRES_DB: stellar_indexer
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - stellar_indexer_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fist -d stellar_indexer"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   stellar-subgraph:
     image: node:22-alpine
     working_dir: /app
     volumes:
       - ./:/app
-      - ../deployments:/app/../deployments:ro
+      - ../deployments:/deployments:ro
     command: sh -c "npm install && npx tsx src/server.ts"
+    env_file:
+      - path: .env
+        required: false
     environment:
-      PORT: "4000"
-      STELLAR_RPC_URL: https://soroban-testnet.stellar.org
-      POLL_MS: "15000"
+      PORT: "${PORT:-4000}"
+      POLL_MS: "${POLL_MS:-30000}"
+      EVENT_LIMIT: "${EVENT_LIMIT:-100}"
+      STELLAR_RPC_URL: "${STELLAR_RPC_URL:-https://soroban-testnet.stellar.org}"
+      DATABASE_URL: "${DATABASE_URL:-postgres://fist:fist@postgres:5432/stellar_indexer}"
+      START_LEDGER: "${START_LEDGER:-}"
+      INDEX_TRACK_B: "${INDEX_TRACK_B:-0}"
     ports:
-      - "4000:4000"
+      - "${PORT:-4000}:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  stellar_indexer_pg:
