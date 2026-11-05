@@ -1,0 +1,22 @@
+{
+  "name": "@fist-commerce/stellar-demo-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fist Commerce Trade Credit Contracts — TypeScript demo client",
+  "type": "module",
+  "bin": {
+    "fist-stellar-demo": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "demo": "node dist/cli.js",
+    "generate": "echo 'Run: npx @stellar/stellar-sdk generate --wasm ../../target/wasm32v1-none/release/trade_credit_pool.wasm --output src/generated/pool' && echo 'Then generate attestation-registry similarly.'"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^14.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}
