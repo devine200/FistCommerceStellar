@@ -1,0 +1,21 @@
+[package]
+name = "trade-credit-pool"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+attestation-registry = { path = "../attestation-registry" }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }
+attestation-registry = { path = "../attestation-registry", features = ["testutils"] }
+
+[features]
+testutils = ["soroban-sdk/testutils"]

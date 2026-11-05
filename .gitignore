@@ -1,0 +1,17 @@
+/target
+**/*.rs.bk
+Cargo.lock.bak
+.DS_Store
+.env
+.env.*
+!.env.example
+*.secret
+secrets/
+node_modules/
+client/typescript/node_modules/
+client/typescript/dist/
+client/typescript/src/generated/
+.deploy-keys/
+*.wasm
+!deployments/
+.stellar/
