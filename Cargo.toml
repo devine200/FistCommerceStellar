@@ -3,12 +3,11 @@ resolver = "2"
 members = [
     "contracts/attestation-registry",
     "contracts/trade-credit-pool",
-    # Track B (added in later commits):
-    # "contracts/receivable-allocator",
-    # "contracts/payout-router",
-    # "contracts/protocol-controller",
-    # "contracts/receivable-token",
-    # "contracts/fist-multisig",
+    "contracts/receivable-allocator",
+    "contracts/payout-router",
+    "contracts/protocol-controller",
+    "contracts/receivable-token",
+    "contracts/fist-multisig",
 ]
 
 [workspace.package]
